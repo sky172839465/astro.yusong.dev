@@ -16,7 +16,7 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+	<body class="bg-background text-foreground transition-colors duration-300">
 		<Header />
 		<main class="w-full max-w-5xl mx-auto px-4 py-12">
 			<section>
@@ -26,8 +26,8 @@ const posts = (await getCollection('blog')).sort(
 							<li class={index === 0 ? "w-full mb-4 text-center" : "w-full sm:w-[calc(50%-1rem)]"}>
 								<a href={`/blog/${post.id}/`} class="block no-underline transition-opacity hover:opacity-90">
 									<img width={720} height={360} src={post.data.heroImage} alt="" class="mb-2 rounded-xl" />
-									<h4 class={index === 0 ? "title text-4xl m-0 leading-none text-slate-900 dark:text-white" : "title text-2xl m-0 leading-none text-slate-900 dark:text-white"}>{post.data.title}</h4>
-									<p class="date m-0 text-slate-500 dark:text-slate-400">
+									<h4 class={index === 0 ? "title text-4xl m-0 leading-none text-foreground" : "title text-2xl m-0 leading-none text-foreground"}>{post.data.title}</h4>
+									<p class="date m-0 text-muted-foreground">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
 								</a>
