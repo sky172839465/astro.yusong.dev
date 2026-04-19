@@ -23,7 +23,7 @@ import ShareButton from './ShareButton';
 			<HeaderLink href="/about" class="text-black dark:text-white no-underline hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</HeaderLink>
 		</div>
 		<div class="flex items-center gap-2 sm:gap-4">
-			<ShareButton client:load title={SITE_TITLE} url={Astro.url.toString()} variant="ghost" size="icon" showText={false} />
+			<ShareButton client:load title={SITE_TITLE} url={Astro.url.toString()} variant="outline" size="icon" showText={false} />
 			<ModeToggle client:load />
 		</div>
 	</nav>
