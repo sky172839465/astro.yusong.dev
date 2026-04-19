@@ -51,25 +51,25 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], headings
 								</div>
 							)}
 
-							{headings.length > 0 && (
-								<nav class="mt-4 text-left self-stretch bg-muted/30 p-4 rounded-lg">
-									<p class="text-sm font-bold mb-2 uppercase tracking-wider">Table of Contents</p>
-									<ul class="space-y-1 text-sm list-none p-0 m-0">
-										{headings.filter(h => h.depth <= 3).map((heading) => (
-											<li style={`margin-left: ${(heading.depth - 2) * 1}rem`}>
-												<a
-													href={`#${heading.slug}`}
-													class="text-muted-foreground hover:text-foreground transition-colors no-underline"
-												>
-													{heading.text}
-												</a>
-											</li>
-										))}
-									</ul>
-								</nav>
-							)}
 						</div>
 						<h1 class="mb-2">{title}</h1>
+						{headings.length > 0 && (
+							<nav class="mt-8 text-left self-stretch bg-muted/30 p-4 rounded-lg">
+								<p class="text-sm font-bold mb-2 uppercase tracking-wider">Table of Contents</p>
+								<ul class="space-y-1 text-sm list-none p-0 m-0">
+									{headings.filter(h => h.depth <= 3).map((heading) => (
+										<li style={`margin-left: ${(heading.depth - 2) * 1}rem`}>
+											<a
+												href={`#${heading.slug}`}
+												class="text-muted-foreground hover:text-foreground transition-colors no-underline"
+											>
+												{heading.text}
+											</a>
+										</li>
+									))}
+								</ul>
+							</nav>
+						)}
 					</div>
 					<slot />
 
