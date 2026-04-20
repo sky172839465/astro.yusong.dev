@@ -17,12 +17,12 @@ const seriesName = id.toUpperCase();
 
 <div class={cn("not-prose my-12 rounded-xl border border-muted bg-muted/20 overflow-hidden", className)}>
 	<div class="px-4 py-3 border-b border-muted bg-muted/30 flex items-center justify-between">
-		<div class="flex items-center gap-2">
-			<span class="flex h-2 w-2 rounded-full bg-primary"></span>
-			<h3 class="text-sm font-bold tracking-wider uppercase text-foreground">
+		<a href={`/blog/${id}/`} class="flex items-center gap-2 group/title">
+			<span class="flex h-2 w-2 rounded-full bg-primary group-hover/title:scale-125 transition-transform"></span>
+			<h3 class="text-sm font-bold tracking-wider uppercase text-foreground group-hover/title:text-primary transition-colors">
 				{seriesName} 系列文章
 			</h3>
-		</div>
+		</a>
 		<span class="text-xs text-muted-foreground font-medium">
 			{posts.findIndex(p => p.id === currentId) + 1} / {posts.length}
 		</span>
