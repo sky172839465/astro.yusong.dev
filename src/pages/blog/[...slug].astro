@@ -14,8 +14,21 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content, headings } = await render(post);
+
+// Detect series from post ID (folder-based)
+const pathSegments = post.id.split('/');
+const seriesId = pathSegments.length > 1 ? pathSegments[0] : null;
+const seriesName = seriesId ? seriesId.split('-').join(' ') : null;
+
+let seriesPosts = [];
+if (seriesId) {
+	const allPosts = await getCollection('blog');
+	seriesPosts = allPosts
+		.filter((p) => p.id.startsWith(`${seriesId}/`))
+		.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+}
 ---
 
-<BlogPost {...post.data} headings={headings}>
+<BlogPost {...post.data} headings={headings} series={seriesId ? { id: seriesName, posts: seriesPosts, currentId: post.id } : undefined}>
 	<Content />
 </BlogPost>
