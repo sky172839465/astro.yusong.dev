@@ -99,7 +99,7 @@ EOF
 
             ### 確認清單
             - [ ] 確認檔案名稱符合 kebab-case 命名規範
-            - [ ] 確認首圖（heroImage）已上傳至 `public/blog/${{ env.SLUG }}/`
+            - [ ] 確認首圖（heroImage）已上傳至 `public/blog/${{ env.SLUG }}/image.jpg`
             - [ ] 檢查標籤是否正確
 
             ### 注意事項
