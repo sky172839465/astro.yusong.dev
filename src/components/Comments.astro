@@ -1,0 +1,60 @@
+---
+---
+
+<div class="giscus mt-12 pt-8 border-t border-muted"></div>
+
+<script>
+  /**
+   * 推薦在 Astro View Transitions 環境下整合 Giscus 的方式：
+   * 1. 使用標準 <script> 標籤（非 is:inline），這樣它會被打包且僅執行一次。
+   * 2. 監聽 'astro:page-load' 事件，在每次導覽後初始化 Giscus。
+   * 3. 使用 MutationObserver 監測主題（theme）變化，並透過 postMessage 即時更新 Giscus 主題。
+   */
+
+  function getGiscusTheme() {
+    const isDark = document.documentElement.classList.contains('dark');
+    return isDark ? 'dark' : 'light';
+  }
+
+  function updateGiscusTheme() {
+    const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    if (!iframe) return;
+
+    iframe.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme: getGiscusTheme() } } },
+      'https://giscus.app'
+    );
+  }
+
+  function setupGiscus() {
+    const container = document.querySelector('.giscus');
+    if (!container) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.setAttribute('data-repo', 'sky172839465/astro.yusong.dev');
+    script.setAttribute('data-repo-id', 'R_kgDOSF1Lmw');
+    script.setAttribute('data-category', 'Announcements');
+    script.setAttribute('data-category-id', 'DIC_kwDOSF1Lm84C7RFp');
+    script.setAttribute('data-mapping', 'pathname');
+    script.setAttribute('data-strict', '0');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', getGiscusTheme());
+    script.setAttribute('data-lang', 'zh-TW');
+    script.setAttribute('data-loading', 'lazy');
+    script.setAttribute('crossorigin', 'anonymous');
+    script.async = true;
+
+    container.innerHTML = '';
+    container.appendChild(script);
+  }
+
+  // 初始化與導覽後的處理
+  document.addEventListener('astro:page-load', setupGiscus);
+
+  // 監測主題變化
+  const observer = new MutationObserver(updateGiscusTheme);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+</script>
