@@ -8,6 +8,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { Badge } from '../components/ui/badge';
 import ShareButton from '../components/ShareButton';
 import Series from '../components/Series.astro';
+import Comments from '../components/Comments.astro';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	headings?: MarkdownHeading[];
@@ -82,9 +83,11 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], headings
 
 					{series && <Series {...series} />}
 
-					<div class="mt-12 pt-8 border-t border-muted flex justify-center">
+					<div class="mt-12 flex justify-center">
 						<ShareButton client:load title={title} url={Astro.url.toString()} />
 					</div>
+
+					<Comments />
 				</div>
 			</article>
 		</main>
