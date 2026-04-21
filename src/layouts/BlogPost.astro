@@ -22,7 +22,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 const { title, description, pubDate, updatedDate, heroImage, tags = [], headings = [], series } = Astro.props;
 ---
 
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
 	</head>
