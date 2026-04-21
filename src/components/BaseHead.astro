@@ -83,7 +83,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 	const enableSmoothScroll = () => {
 		// Wait for one frame to ensure any initial anchor jumps have started/finished
 		requestAnimationFrame(() => {
-			document.documentElement.style.scrollBehavior = 'smooth';
+			document.documentElement.dataset.loaded = 'true';
 		});
 	};
 
@@ -97,6 +97,6 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 	// For Astro View Transitions
 	document.addEventListener('astro:page-load', enableSmoothScroll);
 	document.addEventListener('astro:before-preparation', () => {
-		document.documentElement.style.scrollBehavior = 'auto';
+		delete document.documentElement.dataset.loaded;
 	});
 </script>
