@@ -15,11 +15,7 @@ export default defineConfig({
   site: pkg.homepage,
   integrations: [mdx(), sitemap(), react()],
 
-  adapter: cloudflare({
-      platformProxy: {
-          enabled: true,
-      },
-	}),
+  adapter: cloudflare(),
 
   vite: {
     plugins: [tailwindcss()],

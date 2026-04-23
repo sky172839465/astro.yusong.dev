@@ -10,7 +10,7 @@ interface Props {
 	image?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, import.meta.env.SITE);
 
 const { title, description, image = '/blog-placeholder-about.jpg' } = Astro.props;
 ---
